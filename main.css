@@ -44,7 +44,7 @@ header {
     position: absolute;
     top: 0%;
     width: 100%;
-    height: 150px;  
+    height: 100px;  
     background-color: #000;  
     z-index: 10;
     cursor: pointer;
@@ -64,7 +64,7 @@ header {
 .menu {
     display: flex;
     flex-direction: row;
-    margin: 0 75px;
+    margin: 0 5%;
 }
 
 .menu-item {
@@ -80,7 +80,7 @@ header {
 .form h1 {
     color: red;
     font-weight: 900;
-    font-size: 72px;
+    font-size: 4em;
 }
 
 .form-row {
@@ -93,7 +93,7 @@ header {
     width: 175px;
     text-align: left;
     margin: auto;
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 .form input {
@@ -102,7 +102,7 @@ header {
     border-radius: 5px;
     border: 0;
     padding: 15px;
-    font-size: 24px;
+    font-size: 1.5em;
 }
 
 .form input[type=checkbox] {
@@ -118,7 +118,7 @@ header {
 }
 
 .form-button {
-    font-size: 36px;
+    font-size: 2em;
     padding: 20px;
     font-family: 'Russo One', sans-serif;
     background-color: red;
@@ -144,13 +144,13 @@ header {
 
 .swiper-slide-text h1 {
     color: #fff;
-    font-size: 72px;
+    font-size: 4.5em;
     font-weight: 600;
     text-transform: uppercase;
 }
 .swiper-slide-text span {
     color: red;
-    font-size: 48px;
+    font-size: 3.5em;
     font-weight: 600;
     text-transform: uppercase;
 }
