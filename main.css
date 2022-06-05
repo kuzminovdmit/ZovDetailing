@@ -1,0 +1,156 @@
+html,
+body {
+    background-color: #000;
+    position: relative;
+    height: 100%;
+    font-size: 14px;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    font-family: 'Russo One', sans-serif;
+}
+
+:root {
+    --swiper-theme-color: red;
+}
+
+.swiper-pagination-bullet {
+    width: 15px;
+    height: 15px;
+}
+
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+}
+
+header {
+    position: absolute;
+    top: 0%;
+    width: 100%;
+    height: 150px;  
+    background-color: #000;  
+    z-index: 10;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    margin: 0 75px;
+}
+
+.logo img {
+    height: 75%;
+}
+
+.menu {
+    display: flex;
+    flex-direction: row;
+    margin: 0 75px;
+}
+
+.menu-item {
+    margin: 0 15px;
+    color: #eee;
+    font-size: 28px;
+}
+
+.form {
+    color: #eee;
+}
+
+.form h1 {
+    color: red;
+    font-weight: 900;
+    font-size: 72px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: row;
+    margin: 20px 0px;
+}
+
+.form label {
+    width: 175px;
+    text-align: left;
+    margin: auto;
+    font-size: 24px;
+}
+
+.form input {
+    width: 100%;
+    height: 40px;
+    border-radius: 5px;
+    border: 0;
+    padding: 15px;
+    font-size: 24px;
+}
+
+.form input[type=checkbox] {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.form-agree {
+    margin: auto 15px;
+    text-align: left;
+}
+
+.form-button {
+    font-size: 36px;
+    padding: 20px;
+    font-family: 'Russo One', sans-serif;
+    background-color: red;
+    color: #FFFFFF;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.swiper-slide-text {
+    background-color: #000;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    opacity: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide-text h1 {
+    color: #fff;
+    font-size: 72px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.swiper-slide-text span {
+    color: red;
+    font-size: 48px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
