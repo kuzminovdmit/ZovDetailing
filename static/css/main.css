@@ -7,7 +7,7 @@ body {
     color: #fff;
     margin: 0;
     padding: 0;
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Jura', sans-serif;
 }
 
 :root {
@@ -120,7 +120,7 @@ header {
 .form-button {
     font-size: 2em;
     padding: 20px;
-    font-family: 'Russo One', sans-serif;
+    font-family: 'Jura', sans-serif;
     background-color: red;
     color: #FFFFFF;
     border-radius: 15px;
