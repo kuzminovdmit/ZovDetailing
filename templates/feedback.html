@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}О нас{% endblock %}
+{% block files %}
+<link rel="stylesheet" href="../static/css/main.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+{% endblock %}
+{% block content %}
+<div class="content">
+  <h1>Контакты</h1>
+  <div class="contacts">
+    <h4 style="color: #fff">88005553535</h4>
+    <h4 style="color: #fff">contact@zov-detailing.ru</h4>
+    <h4 style="color: #fff">г. Москва, ул. Пушкина, д. Колотушкина</h4>
+  </div>
+  <div class="form">
+    <h1>Напишите нам</h1>
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form action="" method="post">
+      <div class="form-row">
+        <label for="">ФИО:</label>
+        <input type="text" name="name" placeholder="Иванов Иван Иванович" value="{{ request.form['name'] }}" required>
+      </div>
+      <div class="form-row">
+        <label for="">Телефон:</label>
+        <input type="text" name="phone" placeholder="88005553535" value="{{ request.form['phone'] }}" required>
+      </div>
+      <div class="form-row">
+        <label for="">Email:</label>
+        <input type="text" name="email" placeholder="example@mail.ru" value="{{ request.form['email'] }}" required>
+      </div>
+      <div class="form-row form-textarea">
+        <label for="text">Текст обращения:</label>
+        <textarea name="text" placeholder="{{ request.form['text'] }}" required maxlength="512"></textarea>
+      </div>
+      <div class="form-row-agree">
+        <input type="checkbox" name="agree" required>
+        <div class="form-agree">
+          Согласие на обработку персональных данных
+        </div>
+      </div>
+      <button class="form-button" type="submit">Отправить</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
