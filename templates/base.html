@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ru" data-country-code="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1.0, minimum-scale=1.0">
+  <meta name="description" content="Zov Detailing">
+  <title>{% block title %}{% endblock %} - Zov Detailing</title>
+  <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" />
+  <link rel="stylesheet" href="../static/css/main.css">
+  <script src="../static/js/swiper-bundle.min.js"></script>
+  <script src='../static/js/bootstrap.bundle.min.js'></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top">
+    <a class='navbar-brand' href='/'><img src="../static/img/logo.png"></a>
+    <div class="offcanvas-body p-lg-0">
+      <button class='btn btn-danger navbar-toggler border-3 px-2' type='button' data-bs-toggle='offcanvas'
+        data-bs-target='#offcanvasExample' aria-controls='offcanvasExample'>
+        <img style='width: 30px' src='../static/img/text-center.svg' alt='menu icon'>
+      </button>
+      <div class='offcanvas offcanvas-start-lg bg-danger' tabindex='-1' id='offcanvasExample'
+        aria-labelledby='offcanvasExampleLabel'>
+        <div class='offcanvas-header d-flex d-lg-none'>
+          <h5 class='offcanvas-title text-white' id='offcanvasExampleLabel'>Меню</h5>
+          <a href='javascript:void(0) ' class='text-reset p-0' data-bs-dismiss='offcanvas' aria-label='close'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='#FFFFFF' class='bi bi-x-circle'
+              viewBox='0 0 16 16'>
+              <path d='M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z' />
+              <path
+                d='M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z' />
+            </svg>
+          </a>
+        </div>
+        <div class='offcanvas-body p-lg-0'>
+          <ul class='navbar-nav'>
+            <li class='nav-item'>
+              <h4><a href="about">О проекте</a></h4>
+            </li>
+            <li class='nav-item'>
+              <h4><a href="services">Услуги</a></h4>
+            </li>
+            <li class='nav-item'>
+              <h4><a href="promotion">Акции</a></h4>
+            </li>
+            <li class='nav-item'>
+              <h4><a href="prices">Прайс-лист</a></h4>
+            </li>
+            <li class='nav-item'>
+              <h4><a href="feedback">Связаться с нами</a></h4>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </nav>
+  {% block content %}{% endblock %}
+</body>
+</html>

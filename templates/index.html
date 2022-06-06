@@ -1,108 +1,88 @@
-<html lang="ru" data-country-code="ru">
+{% extends 'base.html' %}
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Zov Detailing">
-  <title>Zov Detailing</title>
-  <link rel="stylesheet" href="../static/css/swiper-bundle.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jura:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../static/css/main.css">
-  <script src="../static/js/swiper-bundle.min.js"></script>
-</head>
-
-<body>
-  <header>
-    <div class="logo">
-      <a href="/"><img src="../static/img/logo.jpg"></a>
-    </div>
-    <div class="menu">
-      <a class="menu-item">О проекте</a>
-      <a class="menu-item">Услуги</a>
-      <a class="menu-item">Акции</a>
-      <a class="menu-item">Прайс-лист</a>
-      <a class="menu-item">Связаться с нами</a>
-    </div>
-  </header>
-  <div class="swiper mySwiper">
-    <div class="swiper-wrapper">
-      <div class="swiper-slide"
-        style="background-image: url('../static/img/1.jpg');">
-        <div class="swiper-slide-text">
-          <h1>Дитейлинг мойка</h1>
-          <span>Цена от 16OO ₽</span>
-        </div>
-      </div>
-      <div class="swiper-slide"
-        style="background-image: url('../static/img/2.jpg');">
-        <div class="swiper-slide-text">
-          <h1>Оклейка</h1>
-          <span>Цена от 5000 ₽</span>
-        </div>
-      </div>
-      <div class="swiper-slide"
-        style="background-image: url('../static/img/3.jpg');">
-        <div class="swiper-slide-text">
-          <h1>Керамика</h1>
-          <span>Цена от 40000 ₽</span>
-        </div>
-      </div>
-      <div class="swiper-slide"
-        style="background-image: url('../static/img/4.jpg');">
-        <div class="swiper-slide-text">
-          <h1>Химчистка</h1>
-          <span>Цена от 15000 ₽</span>
-        </div>
-      </div>
-      <div class="swiper-slide"
-        style="background-image: url('../static/img/5.jpg');">
-        <div class="swiper-slide-text">
-          <h1>Покраска</h1>
-          <span>Цена от 10000 ₽</span>
-        </div>
-      </div>
-      <div class="swiper-slide">
-        <div class="form">
-          <h1>Запись на приём</h1>
-          <form>
-            <div class="form-row">
-              <label for="">ФИО:</label>
-              <input type="text" placeholder="Иванов Иван Иванович">
-            </div>
-            <div class="form-row">
-              <label for="">Телефон:</label>
-              <input type="text" placeholder="88005553535">
-            </div>
-            <div class="form-row">
-              <label for="">Email:</label>
-              <input type="text" placeholder="example@mail.ru">
-            </div>
-            <div class="form-row">
-              <input type="checkbox">
-              <div class="form-agree">
-                Согласие на обработку персональных данных
-              </div>
-            </div>
-            <button class="form-button">Подтвердить</button>
-          </form>
-        </div>
+{% block title %}Главная{% endblock %}
+{% block files %}
+  
+{% endblock %}
+{% block content %}
+<div class="swiper mySwiper">
+  <div class="swiper-wrapper">
+    <div class="swiper-slide"
+      style="background-image: url('../static/img/1.jpg');">
+      <div class="swiper-slide-text">
+        <h1>ДЕТЕЙЛИНГ МОЙКА</h1>
+        <span>Цена от 16OO ₽</span>
       </div>
     </div>
-    <div class="swiper-pagination"></div>
+    <div class="swiper-slide"
+      style="background-image: url('../static/img/2.jpg');">
+      <div class="swiper-slide-text">
+        <h1>ОКЛЕЙКА</h1>
+        <span>Цена от 5OOO ₽</span>
+      </div>
+    </div>
+    <div class="swiper-slide"
+      style="background-image: url('../static/img/3.jpg');">
+      <div class="swiper-slide-text">
+        <h1>КЕРАМИКА</h1>
+        <span>Цена от 4OOOO ₽</span>
+      </div>
+    </div>
+    <div class="swiper-slide"
+      style="background-image: url('../static/img/4.jpg');">
+      <div class="swiper-slide-text">
+        <h1>ХИМЧИСТКА</h1>
+        <span>Цена от 15OOO ₽</span>
+      </div>
+    </div>
+    <div class="swiper-slide"
+      style="background-image: url('../static/img/5.jpg');">
+      <div class="swiper-slide-text">
+        <h1>ПОКРАСКА</h1>
+        <span>Цена от 1OOOO ₽</span>
+      </div>
+    </div>
+    <div class="swiper-slide">
+      <div class="form">
+        <h1>Запись на приём</h1>
+        {% if message %}
+          <p>{{ message }}</p>
+        {% endif %}
+        <form action="" method="post">
+          <div class="form-row">
+            <label for="">ФИО:</label>
+            <input type="text" name="name" placeholder="Иванов Иван Иванович" value="{{ request.form['name'] }}" required>
+          </div>
+          <div class="form-row">
+            <label for="">Телефон:</label>
+            <input type="text" name="phone" placeholder="88005553535" value="{{ request.form['phone'] }}" required>
+          </div>
+          <div class="form-row">
+            <label for="">Email:</label>
+            <input type="text" name="email" placeholder="example@mail.ru" value="{{ request.form['email'] }}" required>
+          </div>
+          <div class="form-row-agree">
+            <input type="checkbox" name="agree" required>
+            <div class="form-agree">
+              Согласие на обработку персональных данных
+            </div>
+          </div>
+          <button class="form-button" type="submit">Записаться</button>
+        </form>
+      </div>
+    </div>
   </div>
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      direction: "vertical",
-      slidesPerView: 1,
-      mousewheel: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-    });
-  </script>
-</body>
-
-</html>
+  <div class="swiper-pagination"></div>
+</div>
+<script>
+  var swiper = new Swiper(".mySwiper", {
+    direction: "vertical",
+    slidesPerView: 1,
+    mousewheel: true,
+    pagination: {
+      el: ".swiper-pagination",
+      clickable: true,
+    },
+  });
+</script>
+{% endblock %}
