@@ -41,11 +41,6 @@ def about():
     return render_template('about.html')
 
 
-@app.route('/services')
-def services():
-    return render_template('services.html')
-
-
 @app.route('/promotion')
 def promotion():
     return render_template('promotion.html')
@@ -56,9 +51,18 @@ def prices():
     return render_template('prices.html')
 
 
-@app.route('/feedback')
+@app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
-    return render_template('feedback.html')
+    message = ''
+    if request.method == 'POST':
+        message = {
+            'name': validate_name(request.form.get('name')),
+            'phone': validate_phone(request.form.get('phone')),
+            'email': validate_email(request.form.get('email')),
+            'text': validate_email(request.form.get('text')),
+            'agree': request.form.get('agree')
+        }
+    return render_template('feedback.html', message=message)
 
 
 @app.errorhandler(404)
