@@ -1,18 +1,47 @@
 {% extends 'base.html' %}
 
 {% block title %}О нас{% endblock %}
-{% block files %}
 
-{% endblock %}
 {% block content %}
-  <div class="content">
-    <img src="../static/img/about.jpg" class="about-image">
-    <h1>О нас</h1>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempore eius laborum voluptate vel, sapiente veniam mollitia cumque reiciendis ad voluptates vitae rerum laudantium quia inventore aliquam, porro maiores? Repudiandae, repellendus.</p>
-    <div class="about-images">
-      <img src="https://s0.rbk.ru/v6_top_pics/media/img/0/41/756536450377410.jpg">
-      <img src="https://s0.rbk.ru/v6_top_pics/media/img/0/41/756536450377410.jpg">
-      <img src="https://s0.rbk.ru/v6_top_pics/media/img/0/41/756536450377410.jpg">
+  <div class="container">
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold">О проекте ZOV Detailing</h1>
+      <div class="col-lg-6 mx-auto">
+        <div class="lead mb-4">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nemo, esse doloribus, modi natus reprehenderit provident rem facere officiis quibusdam harum consequatur quia odit nesciunt cumque placeat deleniti veritatis laborum dolorum?</div>
+      </div>
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark shadow-lg" style="background: linear-gradient(to right, rgba(0,0,0, 0.5) 0 100%), url('../static/img/about-1.jpg') center no-repeat;">
+            <div class="d-flex row align-items-center h-100 p-5 text-white text-shadow-1">
+              <h2 class="display-6 lh-1 fw-bold">Слоган под номером один</h2>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark shadow-lg" style="background: linear-gradient(to right, rgba(0,0,0, 0.5) 0 100%), url('../static/img/about-2.jpg') center left no-repeat;">
+            <div class="d-flex row align-items-center h-100 p-5 text-white text-shadow-1">
+              <h2 class="display-6 lh-1 fw-bold">Слоган под номером два</del></h2>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-white bg-dark shadow-lg" style="background: linear-gradient(to right, rgba(0,0,0, 0.5) 0 100%), url('../static/img/about-3.jpg') center left no-repeat;">
+            <div class="d-flex row align-items-centerh-100 p-5 text-white text-shadow-1">
+              <h2 class="display-6 lh-1 fw-bold">Слоган под номером три</h2>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
+  <script>
+    window.onload = function() {
+      const navbar = document.querySelector(".navbar");
+      const container = document.querySelector(".container");
+      container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
+    }
+  </script>
 {% endblock %}
