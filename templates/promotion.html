@@ -2,21 +2,70 @@
 
 {% block title %}Акции{% endblock %}
 {% block content %}
-<div class="content">
+<div class="container">
   <h1>Акции</h1>
-  <div class="promotions">
-    <div class="promotion green">
-      <h1>Акция 2+1</h1>
-      <p>Сука</p>
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 1.07</span> Полная полировка автомобиля + швейцарский воск SWISSWAX</h5>
+          <p class="card-text"><h1 class="display-4"><strong>39990</strong> <span class="display-6"><s>59990</s></span></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
     </div>
-    <div class="promotion red">
-      <h1>Акция 2+1</h1>
-      <p>Сука</p>
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 31.08</span> Скидка на первый шиномонтаж и хранение резины</h5>
+          <p class="card-text"><h1 class="display-4"><strong>25%</strong></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
     </div>
-    <div class="promotion blue">
-      <h1>Акция 2+1</h1>
-      <p>Сука</p>
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 31.12</span> При покупке курса обучения полировки и нанесения защитных покрытий в подарок швейцарский воск SWISSWAX</h5>
+          <p class="card-text"><h1 class="display-4"><strong>50 мл</strong></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 1.07</span> Полная полировка автомобиля + швейцарский воск SWISSWAX</h5>
+          <p class="card-text"><h1 class="display-4"><strong>39990</strong> <span class="display-6"><s>59990</s></span></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 31.08</span> Скидка на первый шиномонтаж и хранение резины</h5>
+          <p class="card-text"><h1 class="display-4"><strong>25%</strong></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card bd-red-500">
+        <div class="card-body">
+          <h5 class="card-title"><span class="badge bd-red-800">До 31.12</span> При покупке курса обучения полировки и нанесения защитных покрытий в подарок швейцарский воск SWISSWAX</h5>
+          <p class="card-text"><h1 class="display-4"><strong>50 мл</strong></h1></p>
+          <a href="#" class="btn btn-dark">Записаться</a>
+        </div>
+      </div>
     </div>
   </div>
 </div>
+<script>
+  window.onload = function() {
+    const navbar = document.querySelector(".navbar");
+    const container = document.querySelector(".container");
+    container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
+  }
+</script>
 {% endblock %}
