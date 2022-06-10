@@ -2,10 +2,9 @@ from flask import Flask, request, render_template, flash
 from flask_mail import Mail, Message
 
 from forms import AppointmentForm, ContactForm
-from local_settings import populate_env_settings
 
 
-app = populate_env_settings(Flask(__name__))
+app = Flask(__name__)
 mail = Mail()
 mail.init_app(app)
 
@@ -76,4 +75,4 @@ def feedback():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run()
