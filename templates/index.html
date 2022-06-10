@@ -5,7 +5,7 @@
   
 {% endblock %}
 {% block content %}
-<div class="body swiper mySwiper">
+<div class="swiper mySwiper">
   <div class="swiper-wrapper">
     <div class="swiper-slide"
       style="background-image: url('../static/img/1.jpg');">
@@ -43,32 +43,31 @@
       </div>
     </div>
     <div class="swiper-slide">
-      <div class="form">
-        <h2>Запись на приём</h2>
-        {% if message %}
-          <p>{{ message }}</p>
-        {% endif %}
-        <form action="" method="post">
-          <div class="form-row">
-            <label for="">ФИО:</label>
-            <input type="text" name="name" placeholder="Иванов Иван Иванович" value="{{ request.form['name'] }}" required>
-          </div>
-          <div class="form-row">
-            <label for="">Телефон:</label>
-            <input type="text" name="phone" placeholder="88005553535" value="{{ request.form['phone'] }}" required>
-          </div>
-          <div class="form-row">
-            <label for="">Email:</label>
-            <input type="text" name="email" placeholder="example@mail.ru" value="{{ request.form['email'] }}" required>
-          </div>
-          <div class="form-row-agree">
-            <input type="checkbox" name="agree" required>
-            <div class="form-agree">
-              Согласие на обработку персональных данных
+      <div class="container">
+        <div class="px-4 py-5 mt-5 text-center">
+          <h1 class="display-5 fw-bold">Запись на приём</h1>
+        </div>
+        <div class="form">
+          <form method="post">
+            <div class="form-floating mb-3">
+              <input type="text" name="name" class="form-control" id="id_name" value="{{ request.form['name'] }}" required placeholder="fio">
+              <label for="id_name">ФИО</label>
             </div>
-          </div>
-          <button class="form-button" type="submit">Записаться</button>
-        </form>
+            <div class="form-floating mb-3">
+              <input type="text" name="phone" class="form-control" id="id_phone" value="{{ request.form['phone'] }}" required placeholder="phone">
+              <label for="id_phone">Телефон</label>
+            </div>
+            <div class="form-floating mb-3">
+              <input type="email" name="email" class="form-control" id="id_email" value="{{ request.form['email'] }}" required placeholder="email">
+              <label for="id_email">Email</label>
+            </div>
+            <div class="mb-3 form-check text-start">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label text-white" for="exampleCheck1">Согласие на обработку персональных данных</label>
+            </div>
+            <button class="btn btn-danger" type="submit">Записаться</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>
@@ -84,5 +83,10 @@
       clickable: true,
     },
   });
+  window.onload = function () {
+      const navbar = document.querySelector(".navbar");
+      const container = document.querySelector(".container");
+      container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
+    }
 </script>
 {% endblock %}

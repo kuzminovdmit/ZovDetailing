@@ -13,15 +13,20 @@
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-heading-color: ;
-  --bs-link-color: rgb(255, 0, 0);
-  --bs-link-hover-color: rgb(255, 255, 255);
+  --bs-heading-color: rgb(254, 0, 0);
+  --bs-link-color: rgb(255, 255, 255);
+  --bs-link-hover-color: rgb(254, 0, 0);
   --bs-highlight-bg: #fff3cd;
+}
+
+.offcanvas {
+  --bs-offcanvas-bg: #000;
+  --bs-offcanvas-color: #fff;
 }
 
 .accordion {
   --bs-accordion-color: #fff;
-  --bs-accordion-bg: rgb(254, 0, 0);
+  --bs-accordion-bg: rgb(0, 0, 0);
   --bs-accordion-transition: color 0.15s ease-in-out,background-color 0.15s ease-in-out,border-color 0.15s ease-in-out,box-shadow 0.15s ease-in-out,border-radius 0.15s ease;
   --bs-accordion-border-color: var(--bs-border-color);
   --bs-accordion-border-width: 1px;
@@ -31,11 +36,11 @@
   --bs-accordion-btn-padding-y: 1rem;
   --bs-accordion-btn-color: var(--bs-body-color);
   --bs-accordion-btn-bg: var(--bs-accordion-bg);
-  --bs-accordion-btn-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='var%28--bs-body-color%29'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+  --bs-accordion-btn-icon: url('https://cdn-icons-png.flaticon.com/128/892/892498.png');
   --bs-accordion-btn-icon-width: 1.25rem;
   --bs-accordion-btn-icon-transform: rotate(-180deg);
   --bs-accordion-btn-icon-transition: transform 0.2s ease-in-out;
-  --bs-accordion-btn-active-icon: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='var%28--bs-body-color%29'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e);
+  --bs-accordion-btn-active-icon: url('https://cdn-icons-png.flaticon.com/128/892/892555.png');
   --bs-accordion-btn-focus-border-color: rgb(190, 0, 0);
   --bs-accordion-btn-focus-box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
   --bs-accordion-body-padding-x: 1.25rem;
@@ -141,6 +146,10 @@ p {
   margin-bottom: 1rem;
 }
 
+.nav-link {
+  color: #fff;
+}
+
 .swiper-pagination-bullet {
   background: white;
   width: 15px;
@@ -170,101 +179,6 @@ p {
   -ms-flex-align: center;
 }
 
-@media (max-width: 1280px) {
-  .swiper-slide-text h1 {
-    font-size: 3.5em;
-  }
-
-  .swiper-slide-text span {
-    font-size: 2.5em;
-  }
-}
-
-@media (max-width: 800px) {
-
-  .swiper-slide-text h1 {
-    font-size: 3em;
-  }
-
-  .swiper-slide-text span {
-    font-size: 2em;
-  }
-}
-
-.form-row {
-  display: flex;
-  flex-direction: row;
-  margin: 1.5rem 2rem;
-}
-
-.form-row-agree {
-  display: flex;
-  flex-direction: row;
-  margin: 1.5rem 2rem;
-}
-
-.form label {
-  width: 8rem;
-  text-align: left;
-  margin: auto;
-  font-size: 1.5rem;
-}
-
-.form input {
-  font-family: 'Jura', sans-serif;
-  border-radius: 5px;
-  border: 0;
-  padding: 15px;
-  font-size: 1.5rem;
-}
-
-.form input[type=checkbox] {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
-.form-textarea {
-  flex-direction: column;
-}
-
-.form-textarea label {
-  width: auto;
-  padding-bottom: 1rem;
-}
-
-.form textarea {
-  border-radius: 5px;
-  border: 0;
-  padding: 15px;
-  font-size: 1.5rem;
-}
-
-.form-agree {
-  margin: auto 1rem;
-  text-align: left;
-}
-
-.form-button {
-  font-size: 1.5rem;
-  padding: 1rem;
-  font-family: 'Jura', sans-serif;
-  background-color: red;
-  color: #FFFFFF;
-  border-radius: 5px;
-  text-align: center;
-  cursor: pointer;
-}
-
-@media (max-width: 480px) {
-  .form-row {
-    flex-direction: column;
-  }
-
-  .form label {
-    width: auto;
-  }
-}
-
 .swiper-slide-text {
   background-color: #000;
   width: 50%;
@@ -279,6 +193,19 @@ p {
   align-items: center;
 }
 
+.swiper-slide-text span {
+  font-size: 3em;
+}
+
+@media (max-width: 1280px) {
+  .swiper-slide-text h1 {
+    font-size: 3.5em;
+  }
+
+  .swiper-slide-text span {
+    font-size: 2.5em;
+  }
+}
 
 @media (max-width: 950px) {
   .swiper-slide-text {
@@ -290,6 +217,16 @@ p {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+}
+
+@media (max-width: 800px) {
+  .swiper-slide-text h1 {
+    font-size: 3em;
+  }
+
+  .swiper-slide-text span {
+    font-size: 2em;
   }
 }
 
@@ -309,6 +246,16 @@ p {
   -webkit-align-items: center;
   align-items: center;
   flex-direction: column;
+}
+
+.form {
+  width: 90%;
+  max-width: 30rem;
+  margin: auto;
+}
+
+label {
+  color: #000;
 }
 
 p {
