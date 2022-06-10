@@ -15,32 +15,61 @@
   <div class="px-4 pb-5 text-center">
     <h1 class="display-5 fw-bold">Связь с нами</h1>
   </div>
-  <div class="form pb-5  text-center">
+  <div class="form pb-5">
     <form method="post">
+      {{ form.hidden_tag() }}
+      {% if success %}
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+          <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/success.png">
+          <div>Вы успешно отправили заявку на приём! Мы скоро вам ответим.</div>
+        </div>
+      {% elif form.errors %}
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+          <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/alert.png">
+          <div>
+            {% for message in form.name.errors %}
+              {{ message }}
+            {% endfor %}
+            {% for message in form.phone.errors %}
+              {{ message }}
+            {% endfor %}
+            {% for message in form.email.errors %}
+              {{ message }}
+            {% endfor %}
+            {% for message in form.message.errors %}
+              {{ message }}
+            {% endfor %}
+            {% for message in form.agree.errors %}
+              {{ message }}
+            {% endfor %}
+          </div>
+        </div>
+      {% endif %}
       <div class="form-floating mb-3">
-        <input type="text" name="name" class="form-control" id="id_name" value="{{ request.form['name'] }}" required placeholder="fio">
-        <label for="id_name">ФИО</label>
+        <input type="text" name="name" class="form-control" id="name" required placeholder="fio">
+        <label for="name">ФИО</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="text" name="phone" class="form-control" id="id_phone" value="{{ request.form['phone'] }}" required placeholder="phone">
-        <label for="id_phone">Телефон</label>
+        <input type="tel" name="phone" class="form-control" id="phone" required placeholder="phone">
+        <label for="phone">Телефон</label>
       </div>
       <div class="form-floating mb-3">
-        <input type="email" name="email" class="form-control" id="id_email" value="{{ request.form['email'] }}" required placeholder="email">
-        <label for="id_email">Email</label>
+        <input type="email" name="email" class="form-control" id="email" required placeholder="email">
+        <label for="email">Email</label>
       </div>
-      <div class="form-floating mb-3">
-        <textarea class="form-control" id="id_text" value="{{ request.form['text'] }}" required placeholder="text" rows="3"></textarea>
-        <label for="id_text">Текст обращения</label>
+      <div class="mb-3">
+        <label for="message" class="form-label text-white">Текст обращения</label>
+        <textarea name="message" class="form-control" id="message" required rows="5"></textarea>
       </div>
       <div class="mb-3 form-check text-start">
-        <input type="checkbox" class="form-check-input" id="exampleCheck1">
-        <label class="form-check-label text-white" for="exampleCheck1">Согласие на обработку персональных данных</label>
+        <input type="checkbox" class="form-check-input" id="agree">
+        <label class="form-check-label text-white" for="agree" required>Согласие на обработку персональных данных</label>
       </div>
-      <button class="btn btn-danger" type="submit">Отправить</button>
+      <div class="pt-3 d-flex justify-content-center">
+        <button class="btn btn-danger" type="submit">Записаться</button>
+      </div>
     </form>
   </div>
-  
 </div>
 <script>
   window.onload = function() {

@@ -1,21 +1,37 @@
-from flask import Flask, request
-from flask import render_template
+from flask import Flask, request, render_template, flash
+from flask_mail import Mail, Message
 
-from validators import validate_email, validate_name, validate_phone
+from forms import AppointmentForm, ContactForm
+from local_settings import populate_env_settings
 
 
-app = Flask(__name__)
+app = populate_env_settings(Flask(__name__))
+mail = Mail()
+mail.init_app(app)
+
 
 @app.route('/', methods=['POST', 'GET'])
 def index():
+    form = AppointmentForm()
+    success = False
+    
     if request.method == 'POST':
-        message = {
-            'name': validate_name(request.form.get('name')),
-            'phone': validate_phone(request.form.get('phone')),
-            'email': validate_email(request.form.get('email')),
-            'agree': request.form.get('agree')
-        }
-    return render_template('index.html')
+        if form.validate_on_submit():
+            mail.send(Message(
+                subject=f'Запись на прием пользователя {form.name.data}',
+                recipients=[app.config['RECIPIENT_MAIL']],
+                body=f'''
+                ФИО: {form.name.data}
+                Телефон: {form.phone.data}
+                Email: {form.email.data}
+                ''',
+                sender=form.email.data
+            ))
+            success = True
+        else:
+            flash(form.errors)
+        
+    return render_template('index.html', form=form, success=success)
 
 
 @app.route('/about')
@@ -35,17 +51,29 @@ def prices():
 
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
-    message = ''
+    form = ContactForm()
+    success = False
+    
     if request.method == 'POST':
-        message = {
-            'name': validate_name(request.form.get('name')),
-            'phone': validate_phone(request.form.get('phone')),
-            'email': validate_email(request.form.get('email')),
-            'text': validate_email(request.form.get('text')),
-            'agree': request.form.get('agree')
-        }
-    return render_template('feedback.html', message=message)
+        if form.validate_on_submit():
+            mail.send(Message(
+                subject=f'Сообщение от пользователя {form.name.data}',
+                recipients=[app.config['RECIPIENT_MAIL']],
+                body=f'''
+                ФИО: {form.name.data}
+                Телефон: {form.phone.data}
+                Email: {form.email.data}
+                Сообщение:
+                {form.message.data}
+                ''',
+                sender=form.email.data
+            ))
+            success = True
+        else:
+            flash(form.errors)
+        
+    return render_template('feedback.html', form=form, success=success)
 
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
