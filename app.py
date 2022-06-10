@@ -1,10 +1,19 @@
 from flask import Flask, request, render_template, flash
 from flask_mail import Mail, Message
+from os import getenv
 
 from forms import AppointmentForm, ContactForm
 
 
 app = Flask(__name__)
+app.secret_key = getenv('SECRET_KEY')
+app.config['MAIL_SERVER'] = getenv('MAIL_SERVER')
+app.config['MAIL_PORT'] = getenv('MAIL_PORT')
+app.config['MAIL_USERNAME'] = getenv('MAIL_USERNAME')
+app.config['MAIL_PASSWORD'] = getenv('MAIL_PASSWORD')
+app.config['MAIL_USE_TLS'] = getenv('MAIL_USE_TLS', False)
+app.config['MAIL_USE_SSL'] = getenv('MAIL_USE_SSL', True)
+
 mail = Mail()
 mail.init_app(app)
 
