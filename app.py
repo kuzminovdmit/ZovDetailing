@@ -1,15 +1,14 @@
-import asyncio
 from os import getenv
 
 from dotenv import load_dotenv
-from flask import Flask, request, render_template, flash, jsonify
-from flask_mailing import Mail, Message
-
-from forms import AppointmentForm, ContactForm
+from flask import Flask, request, render_template
+from flask_mailman import Mail, EmailMessage
+from flask_wtf.csrf import CSRFProtect
 
 
 load_dotenv()
 mail = Mail()
+csrf = CSRFProtect()
 
 
 def create_app():
@@ -21,62 +20,45 @@ def create_app():
     app.config['MAIL_SERVER'] = getenv('MAIL_SERVER')
     app.config['MAIL_USE_TLS'] = getenv('MAIL_USE_TLS', False)
     app.config['MAIL_USE_SSL'] = getenv('MAIL_USE_SSL', True)
-    app.config['RECIPIENT_MAIL'] = getenv('RECIPIENT_MAIL')
+    app.config['MAIL_DEFAULT_SENDER'] = getenv('MAIL_DEFAULT_SENDER')
+    app.config['MAIL_DEFAULT_RECIPIENT'] = getenv('MAIL_DEFAULT_RECIPIENT')
     mail.init_app(app)
+    csrf.init_app(app)
     return app
 
 
 app = create_app()
 
 
-@app.get("/email")
-async def simple_send(form):
-    html = f'''ФИО: {form.get('name')}
-    Телефон: {form.get('phone')}
-    Email: {form.get('email')}
-    '''
+def simple_send(form):
     subject = f'Запись на прием: {form.get("name")}'
+    body = f'''ФИО: {form.get('name')}
+Телефон: {form.get('phone')}
+Email: {form.get('email')}'''
+
     if form.get('message'):
-        html += f'\nСообщение: {form.get("message")}'
         subject = f'Обратная связь от: {form.get("name")}'
+        body += f'\nСообщение: {form.get("message")}'
 
-    await mail.send_message(Message(
-        subject=subject,
-        recipients=[app.config['RECIPIENT_MAIL']],
-        body=html, sender=app.config['MAIL_USERNAME']
-    ))
-
-    return jsonify(status_code=200, content={"message": "Сообщение отправлено."})
+    EmailMessage(
+        subject=subject, body=body, to=[app.config['MAIL_DEFAULT_RECIPIENT']]
+    ).send()
 
 
 @app.route('/', methods=['POST', 'GET'])
-async def index():
-    form = AppointmentForm()
-    success = False
-
+def index():
     if request.method == 'POST':
-        if form.validate_on_submit():
-            await asyncio.gather(simple_send(form.data))
-            success = True
-        else:
-            flash(form.errors)
+        simple_send(request.form.to_dict())
 
-    return render_template('index.html', form=form, success=success)
+    return render_template('index.html')
 
 
 @app.route('/feedback', methods=['POST', 'GET'])
-async def feedback():
-    form = ContactForm()
-    success = False
-
+def feedback():
     if request.method == 'POST':
-        if form.validate_on_submit():
-            await asyncio.gather(simple_send(form.data))
-            success = True
-        else:
-            flash(form.errors)
+        simple_send(request.form.to_dict())
 
-    return render_template('feedback.html', form=form, success=success)
+    return render_template('feedback.html')
 
 
 @app.route('/about')

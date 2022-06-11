@@ -3,79 +3,91 @@
 {% block title %}Связь с нами{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="px-4 py-5 my-5 text-center">
-    <h1 class="display-5 fw-bold">Наши контакты</h1>
-    <div class="col-lg-6 mx-auto">
-      <div class="lead">88005553535</div>
-      <div class="lead">contact@zov-detailing.ru</div>
-      <div class="lead">г. Москва, ул. Пушкина, д. Колотушкина</div>
+  <div class="container">
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold">Наши контакты</h1>
+      <div class="col-lg-6 mx-auto">
+        <div class="lead">88005553535</div>
+        <div class="lead">contact@zov-detailing.ru</div>
+        <div class="lead">г. Москва, ул. Пушкина, д. Колотушкина</div>
+      </div>
+    </div>
+    <div class="px-4 pb-5 text-center">
+      <h1 class="display-5 fw-bold">Связь с нами</h1>
+    </div>
+    <div class="form pb-5">
+      <form method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+        <div class="form-floating mb-3">
+          <input type="text" name="name" class="form-control" id="name" required placeholder="fio">
+          <label for="name">ФИО</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="tel" name="phone" class="form-control" id="phone" required placeholder="phone">
+          <label for="phone">Телефон</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="email" name="email" class="form-control" id="email" required placeholder="email">
+          <label for="email">Email</label>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label text-white">Текст обращения</label>
+          <textarea name="message" class="form-control" id="message" required rows="5"></textarea>
+        </div>
+        <div class="mb-3 form-check text-start">
+          <input type="checkbox" class="form-check-input" id="agree" required>
+          <label class="form-check-label text-white" for="agree">Согласие на обработку персональных данных</label>
+        </div>
+        <div class="pt-3 d-flex justify-content-center">
+          <button class="btn btn-danger" type="submit">Записаться</button>
+        </div>
+      </form>
     </div>
   </div>
-  <div class="px-4 pb-5 text-center">
-    <h1 class="display-5 fw-bold">Связь с нами</h1>
-  </div>
-  <div class="form pb-5">
-    <form method="post">
-      {{ form.hidden_tag() }}
-      {% if success %}
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-          <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/success.png">
-          <div>Вы успешно отправили заявку на приём! Мы скоро вам ответим.</div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex bg-dark">
+        <div class="toast-body">
+          Сообщение успешно отправлено!
         </div>
-      {% elif form.errors %}
-        <div class="alert alert-danger d-flex align-items-center" role="alert">
-          <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/alert.png">
-          <div>
-            {% for message in form.name.errors %}
-              {{ message }}
-            {% endfor %}
-            {% for message in form.phone.errors %}
-              {{ message }}
-            {% endfor %}
-            {% for message in form.email.errors %}
-              {{ message }}
-            {% endfor %}
-            {% for message in form.message.errors %}
-              {{ message }}
-            {% endfor %}
-            {% for message in form.agree.errors %}
-              {{ message }}
-            {% endfor %}
-          </div>
-        </div>
-      {% endif %}
-      <div class="form-floating mb-3">
-        <input type="text" name="name" class="form-control" id="name" required placeholder="fio">
-        <label for="name">ФИО</label>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
-      <div class="form-floating mb-3">
-        <input type="tel" name="phone" class="form-control" id="phone" required placeholder="phone">
-        <label for="phone">Телефон</label>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="email" name="email" class="form-control" id="email" required placeholder="email">
-        <label for="email">Email</label>
-      </div>
-      <div class="mb-3">
-        <label for="message" class="form-label text-white">Текст обращения</label>
-        <textarea name="message" class="form-control" id="message" required rows="5"></textarea>
-      </div>
-      <div class="mb-3 form-check text-start">
-        <input type="checkbox" class="form-check-input" id="agree">
-        <label class="form-check-label text-white" for="agree" required>Согласие на обработку персональных данных</label>
-      </div>
-      <div class="pt-3 d-flex justify-content-center">
-        <button class="btn btn-danger" type="submit">Записаться</button>
-      </div>
-    </form>
+    </div>
   </div>
-</div>
-<script>
-  window.onload = function() {
-    const navbar = document.querySelector(".navbar");
-    const container = document.querySelector(".container");
-    container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
-  }
-</script>
+  <script>
+      var csrf_token = "{{ csrf_token() }}";
+      $('form').on('submit', function(e) {
+          const toastLiveExample = document.getElementById('liveToast')
+          const toast = new bootstrap.Toast(toastLiveExample)
+          $.ajax({
+              beforeSend: function(xhr, settings) {
+                  if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                      xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                  }
+              },
+              type: 'POST',
+              url: '/',
+              data: {
+                  name: $("#name").val(),
+                  email: $("#email").val(),
+                  phone: $("#phone").val(),
+                  message: $("#message").val(),
+              },
+              success: function() {
+                  $("#name").val('');
+                  $("#email").val('');
+                  $("#phone").val('');
+                  $("#message").val('');
+                  toast.show();
+              }
+          });
+
+          e.preventDefault();
+      });
+      window.onload = function() {
+          const navbar = document.querySelector(".navbar");
+          const container = document.querySelector(".container");
+          container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
+      }
+  </script>
 {% endblock %}

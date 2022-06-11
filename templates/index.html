@@ -1,119 +1,132 @@
 {% extends 'base.html' %}
 
 {% block title %}Главная{% endblock %}
-{% block files %}
-  
-{% endblock %}
+
 {% block content %}
-<div class="swiper mySwiper">
-  <div class="swiper-wrapper">
-    <div class="swiper-slide"
-      style="background-image: url('../static/img/1.jpg');">
-      <div class="swiper-slide-text">
-        <h1>ДЕТЕЙЛИНГ МОЙКА</h1>
-        <span>Цена от 16OO ₽</span>
-      </div>
-    </div>
-    <div class="swiper-slide"
-      style="background-image: url('../static/img/2.jpg');">
-      <div class="swiper-slide-text">
-        <h1>ОКЛЕЙКА</h1>
-        <span>Цена от 5OOO ₽</span>
-      </div>
-    </div>
-    <div class="swiper-slide"
-      style="background-image: url('../static/img/3.jpg');">
-      <div class="swiper-slide-text">
-        <h1>КЕРАМИКА</h1>
-        <span>Цена от 4OOOO ₽</span>
-      </div>
-    </div>
-    <div class="swiper-slide"
-      style="background-image: url('../static/img/4.jpg');">
-      <div class="swiper-slide-text">
-        <h1>ХИМЧИСТКА</h1>
-        <span>Цена от 15OOO ₽</span>
-      </div>
-    </div>
-    <div class="swiper-slide"
-      style="background-image: url('../static/img/5.jpg');">
-      <div class="swiper-slide-text">
-        <h1>ПОКРАСКА</h1>
-        <span>Цена от 1OOOO ₽</span>
-      </div>
-    </div>
-    <div class="swiper-slide">
-      <div class="container">
-        <div class="px-4 py-5 mt-5 text-center">
-          <h1 class="display-5 fw-bold">Запись на приём</h1>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"
+           style="background-image: url('../static/img/1.jpg');">
+        <div class="swiper-slide-text">
+          <h1>ДЕТЕЙЛИНГ МОЙКА</h1>
+          <span>Цена от 16OO ₽</span>
         </div>
-        <div class="form">
-          <form method="post">
-            {{ form.hidden_tag() }}
-            {% if success %}
-              <div class="alert alert-success d-flex align-items-center" role="alert">
-                <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/success.png">
-                <div>Вы успешно отправили заявку на приём! Мы скоро вам ответим.</div>
-              </div>
-            {% elif form.errors %}
-              <div class="alert alert-danger d-flex align-items-center" role="alert">
-                <img class="bi flex-shrink-0 me-2" width="24" height="24" src="../static/img/alert.png">
-                <div>
-                  {% for message in form.name.errors %}
-                    {{ message }}
-                  {% endfor %}
-                  {% for message in form.phone.errors %}
-                    {{ message }}
-                  {% endfor %}
-                  {% for message in form.email.errors %}
-                    {{ message }}
-                  {% endfor %}
-                  {% for message in form.agree.errors %}
-                    {{ message }}
-                  {% endfor %}
-                </div>
-              </div>
-            {% endif %}
-            <div class="form-floating mb-3">
-              <input type="text" name="name" class="form-control" id="name" required placeholder="fio">
-              <label for="name">ФИО</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="tel" name="phone" class="form-control" id="phone" required placeholder="phone">
-              <label for="phone">Телефон</label>
-            </div>
-            <div class="form-floating mb-3">
-              <input type="email" name="email" class="form-control" id="email" required placeholder="email">
-              <label for="email">Email</label>
-            </div>
-            <div class="mb-3 form-check text-start">
-              <input type="checkbox" class="form-check-input" id="agree">
-              <label class="form-check-label text-white" for="agree" required>Согласие на обработку персональных данных</label>
-            </div>
-            <div class="pt-3 d-flex justify-content-center">
-              <button class="btn btn-danger" type="submit">Записаться</button>
-            </div>
-          </form>
+      </div>
+      <div class="swiper-slide"
+           style="background-image: url('../static/img/2.jpg');">
+        <div class="swiper-slide-text">
+          <h1>ОКЛЕЙКА</h1>
+          <span>Цена от 5OOO ₽</span>
         </div>
+      </div>
+      <div class="swiper-slide"
+           style="background-image: url('../static/img/3.jpg');">
+        <div class="swiper-slide-text">
+          <h1>КЕРАМИКА</h1>
+          <span>Цена от 4OOOO ₽</span>
+        </div>
+      </div>
+      <div class="swiper-slide"
+           style="background-image: url('../static/img/4.jpg');">
+        <div class="swiper-slide-text">
+          <h1>ХИМЧИСТКА</h1>
+          <span>Цена от 15OOO ₽</span>
+        </div>
+      </div>
+      <div class="swiper-slide"
+           style="background-image: url('../static/img/5.jpg');">
+        <div class="swiper-slide-text">
+          <h1>ПОКРАСКА</h1>
+          <span>Цена от 1OOOO ₽</span>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="container">
+          <div class="px-4 py-5 mt-5 text-center">
+            <h1 class="display-5 fw-bold">Запись на приём</h1>
+          </div>
+          <div class="form">
+            <form method="post">
+              <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
+              <div class="form-floating mb-3">
+                <input type="text" name="name" class="form-control" id="name" required placeholder="fio">
+                <label for="name">ФИО</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="tel" name="phone" class="form-control" id="phone" required placeholder="phone">
+                <label for="phone">Телефон</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="email" name="email" class="form-control" id="email" required placeholder="email">
+                <label for="email">Email</label>
+              </div>
+              <div class="mb-3 form-check text-start">
+                <input type="checkbox" class="form-check-input" id="agree" required>
+                <label class="form-check-label text-white" for="agree">Согласие на обработку персональных данных</label>
+              </div>
+              <div class="pt-3 d-flex justify-content-center">
+                <button class="btn btn-danger" type="submit">Записаться</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination"></div>
+  </div>
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="d-flex bg-dark">
+        <div class="toast-body">
+          Сообщение успешно отправлено!
+        </div>
+        <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
     </div>
   </div>
-  <div class="swiper-pagination"></div>
-</div>
-<script>
-  var swiper = new Swiper(".mySwiper", {
-    direction: "vertical",
-    slidesPerView: 1,
-    mousewheel: true,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-  });
-  window.onload = function () {
-      const navbar = document.querySelector(".navbar");
-      const container = document.querySelector(".container");
-      container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
-    }
-</script>
+
+  <script type="text/javascript">
+      var csrf_token = "{{ csrf_token() }}";
+      $('form').on('submit', function(e) {
+          const toastLiveExample = document.getElementById('liveToast')
+          const toast = new bootstrap.Toast(toastLiveExample)
+          $.ajax({
+              beforeSend: function(xhr, settings) {
+                  if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                      xhr.setRequestHeader("X-CSRFToken", csrf_token);
+                  }
+              },
+              type: 'POST',
+              url: '/',
+              data: {
+                  name: $("#name").val(),
+                  email: $("#email").val(),
+                  phone: $("#phone").val(),
+              },
+              success: function() {
+                  $("#name").val('');
+                  $("#email").val('');
+                  $("#phone").val('');
+                  toast.show()
+              }
+          });
+
+          e.preventDefault();
+      });
+
+      var swiper = new Swiper(".mySwiper", {
+          direction: "vertical",
+          slidesPerView: 1,
+          mousewheel: true,
+          pagination: {
+              el: ".swiper-pagination",
+              clickable: true,
+          },
+      });
+      window.onload = function () {
+          const navbar = document.querySelector(".navbar");
+          const container = document.querySelector(".container");
+          container.style.paddingTop = (navbar.clientHeight.toString()) + 'px';
+      };
+  </script>
 {% endblock %}
