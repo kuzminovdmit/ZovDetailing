@@ -1,27 +1,25 @@
-from os import getenv
+import settings
 
-from dotenv import load_dotenv
 from flask import Flask, request, render_template
 from flask_mailman import Mail, EmailMessage
 from flask_wtf.csrf import CSRFProtect
 
 
-load_dotenv()
 mail = Mail()
 csrf = CSRFProtect()
 
 
 def create_app():
     app = Flask(__name__)
-    app.secret_key = getenv('SECRET_KEY')
-    app.config['MAIL_USERNAME'] = getenv('MAIL_USERNAME')
-    app.config['MAIL_PASSWORD'] = getenv('MAIL_PASSWORD')
-    app.config['MAIL_PORT'] = getenv('MAIL_PORT')
-    app.config['MAIL_SERVER'] = getenv('MAIL_SERVER')
-    app.config['MAIL_USE_TLS'] = getenv('MAIL_USE_TLS', False)
-    app.config['MAIL_USE_SSL'] = getenv('MAIL_USE_SSL', True)
-    app.config['MAIL_DEFAULT_SENDER'] = getenv('MAIL_DEFAULT_SENDER')
-    app.config['MAIL_DEFAULT_RECIPIENT'] = getenv('MAIL_DEFAULT_RECIPIENT')
+    app.secret_key = settings.SECRET_KEY
+    app.config['MAIL_USERNAME'] = settings.MAIL_USERNAME
+    app.config['MAIL_PASSWORD'] = settings.MAIL_PASSWORD
+    app.config['MAIL_PORT'] = settings.MAIL_PORT
+    app.config['MAIL_SERVER'] = settings.MAIL_SERVER
+    app.config['MAIL_USE_TLS'] = settings.MAIL_USE_TLS
+    app.config['MAIL_USE_SSL'] = settings.MAIL_USE_SSL
+    app.config['MAIL_DEFAULT_SENDER'] = settings.MAIL_DEFAULT_SENDER
+    app.config['MAIL_DEFAULT_RECIPIENT'] = settings.MAIL_DEFAULT_RECIPIENT
     mail.init_app(app)
     csrf.init_app(app)
     return app
