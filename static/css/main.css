@@ -219,6 +219,31 @@ p {
   -ms-flex-align: center;
 }
 
+.slide1 {
+  background-image: url("../img/1.jpg");
+  background-size: cover;
+}
+
+.slide2 {
+  background-image: url("../img/2.jpg");
+  background-size: cover;
+}
+
+.slide3 {
+  background-image: url("../img/3.jpg");
+  background-size: cover;
+}
+
+.slide4 {
+  background-size: cover;
+  background-image: url("../img/4.jpg");
+}
+
+.slide5 {
+   background-size: cover;
+   background-image: url("../img/5.jpg");
+}
+
 .swiper-slide-text {
   background-color: #000;
   width: 50%;
