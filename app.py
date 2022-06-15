@@ -3,8 +3,10 @@ from flask_mailman import Mail, EmailMessage
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
 from wtforms import EmailField, StringField, TelField, TextAreaField
+from wtforms.validators import Email, InputRequired, Regexp
 
 import settings
+
 
 mail = Mail()
 csrf = CSRFProtect()
@@ -30,9 +32,24 @@ app = create_application()
 
 
 class MailForm(FlaskForm):
-    name = StringField()
-    email = EmailField()
-    phone = TelField()
+    name = StringField(validators=[
+        InputRequired(message='Необходимо ввести своё имя'),
+        Regexp(
+            r"^(?=.{1,40}$)[а-яёА-ЯЁ]+(?:[-' ][а-яёА-ЯЁ]+)*$",
+            message='Введите настоящее имя'
+        )
+    ])
+    email = EmailField(validators=[
+        InputRequired(message='Необходимо ввести электронную почту'),
+        Email(message='Неправильный формат электронной почты (пример: k@s.to)')
+    ])
+    phone = TelField(validators=[
+        InputRequired(message='Необходимо ввести номер телефона'),
+        Regexp(
+            r'^[\d]{11}$',
+            message='Неправильный формат номера телефона (пример: 88005553535)'
+        )
+    ])
     message = TextAreaField()
 
 

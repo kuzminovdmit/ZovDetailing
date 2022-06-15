@@ -73,6 +73,7 @@
 }
 
 .navbar-dark {
+  background-color: black;
   --bs-navbar-color: rgb(255, 255, 255);
   --bs-navbar-hover-color: rgb(255, 255, 255);
   --bs-navbar-disabled-color: rgba(255, 255, 255, 0.25);
@@ -87,6 +88,11 @@
   background: url('../img/cancel.png') center/2em no-repeat;
   margin-right: 0 !important;
   opacity: 1 !important;
+}
+
+.invalid-feedback {
+  font-weight: 700;
+  color: #ff7676;
 }
 
 html,
