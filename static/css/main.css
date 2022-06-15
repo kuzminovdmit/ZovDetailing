@@ -13,9 +13,9 @@
   --bs-border-radius-xl: 1rem;
   --bs-border-radius-2xl: 2rem;
   --bs-border-radius-pill: 50rem;
-  --bs-heading-color: rgb(254, 0, 0);
+  --bs-heading-color: rgb(255, 0, 0);
   --bs-link-color: rgb(255, 255, 255);
-  --bs-link-hover-color: rgb(254, 0, 0);
+  --bs-link-hover-color: rgb(255, 0, 0);
   --bs-highlight-bg: #fff3cd;
 }
 
@@ -26,8 +26,8 @@
 
 .btn-danger {
   --bs-btn-color: #fff;
-  --bs-btn-bg: rgb(254, 0, 0);
-  --bs-btn-border-color: rgb(254, 0, 0);
+  --bs-btn-bg: rgb(255, 0, 0);
+  --bs-btn-border-color: rgb(255, 0, 0);
 }
 
 .alert-danger {
@@ -43,8 +43,8 @@
 }
 
 .form-check-input:checked {
-  background-color: rgb(190, 0, 0);
-  border-color: rgb(190, 0, 0);
+  background-color: rgb(255, 0, 0);
+  border-color: rgb(255, 0, 0);
 }
 
 .accordion {

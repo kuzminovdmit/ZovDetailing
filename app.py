@@ -1,61 +1,77 @@
-import settings
-
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from flask_mailman import Mail, EmailMessage
+from flask_wtf import FlaskForm
 from flask_wtf.csrf import CSRFProtect
+from wtforms import EmailField, StringField, TelField, TextAreaField
 
+import settings
 
 mail = Mail()
 csrf = CSRFProtect()
 
 
-def create_app():
-    app = Flask(__name__)
-    app.secret_key = settings.SECRET_KEY
-    app.config['MAIL_USERNAME'] = settings.MAIL_USERNAME
-    app.config['MAIL_PASSWORD'] = settings.MAIL_PASSWORD
-    app.config['MAIL_PORT'] = settings.MAIL_PORT
-    app.config['MAIL_SERVER'] = settings.MAIL_SERVER
-    app.config['MAIL_USE_TLS'] = settings.MAIL_USE_TLS
-    app.config['MAIL_USE_SSL'] = settings.MAIL_USE_SSL
-    app.config['MAIL_DEFAULT_SENDER'] = settings.MAIL_DEFAULT_SENDER
-    app.config['MAIL_DEFAULT_RECIPIENT'] = settings.MAIL_DEFAULT_RECIPIENT
-    mail.init_app(app)
-    csrf.init_app(app)
-    return app
+def create_application():
+    application = Flask(__name__)
+    application.secret_key = settings.SECRET_KEY
+    application.config['MAIL_USERNAME'] = settings.MAIL_USERNAME
+    application.config['MAIL_PASSWORD'] = settings.MAIL_PASSWORD
+    application.config['MAIL_PORT'] = settings.MAIL_PORT
+    application.config['MAIL_SERVER'] = settings.MAIL_SERVER
+    application.config['MAIL_USE_TLS'] = settings.MAIL_USE_TLS
+    application.config['MAIL_USE_SSL'] = settings.MAIL_USE_SSL
+    application.config['MAIL_DEFAULT_SENDER'] = settings.MAIL_DEFAULT_SENDER
+    application.config['MAIL_DEFAULT_RECIPIENT'] = settings.MAIL_DEFAULT_RECIPIENT
+    mail.init_app(application)
+    csrf.init_app(application)
+    return application
 
 
-app = create_app()
+app = create_application()
 
 
-def simple_send(form):
-    subject = f'Запись на прием: {form.get("name")}'
-    body = f'''ФИО: {form.get('name')}
-Телефон: {form.get('phone')}
-Email: {form.get('email')}'''
-
-    if form.get('message'):
-        subject = f'Обратная связь от: {form.get("name")}'
-        body += f'\nСообщение: {form.get("message")}'
-
-    EmailMessage(
-        subject=subject, body=body, to=[app.config['MAIL_DEFAULT_RECIPIENT']]
-    ).send()
+class MailForm(FlaskForm):
+    name = StringField()
+    email = EmailField()
+    phone = TelField()
+    message = TextAreaField()
 
 
-@app.route('/', methods=['POST', 'GET'])
-def index():
+@app.route('/mail', methods=['POST', 'GET'])
+def mail():
+    form = MailForm()
+
     if request.method == 'POST':
-        simple_send(request.form.to_dict())
+        if form.validate_on_submit():
+            name = form.data.get('name')
+            email = form.data.get('email')
+            phone = form.data.get('phone')
+            message = form.data.get("message")
 
+            subject = f'Запись на прием: {name}'
+            body = f'ФИО: {name}\nТелефон: {phone}\nEmail: {email}'
+
+            if message:
+                subject = f'Обратная связь от: {name}'
+                body += f'\nСообщение: {message}'
+
+            msg = EmailMessage(
+                subject=subject, body=body,
+                to=[app.config['MAIL_DEFAULT_RECIPIENT']]
+            )
+
+            msg.send()
+            return jsonify(data=form.data)
+        else:
+            return jsonify(data=form.errors)
+
+
+@app.route('/')
+def index():
     return render_template('index.html')
 
 
-@app.route('/feedback', methods=['POST', 'GET'])
+@app.route('/feedback')
 def feedback():
-    if request.method == 'POST':
-        simple_send(request.form.to_dict())
-
     return render_template('feedback.html')
 
 
